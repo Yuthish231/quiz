@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DullSleep Organisation | Internal Verification</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #1c1f24, #0f1114);
+    font-family: 'Inter', sans-serif;
+    color: #e6e6e6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.portal {
+    width: 760px;
+    background: #15181d;
+    border: 1px solid #2a2f36;
+    border-radius: 8px;
+    padding: 32px 40px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+
+.header {
+    border-bottom: 1px solid #2a2f36;
+    padding-bottom: 14px;
+    margin-bottom: 22px;
+}
+
+.header h1 {
+    margin: 0;
+    color: #d1d5db;
+    font-size: 22px;
+}
+
+.header p {
+    margin: 5px 0 0;
+    font-size: 13px;
+    color: #9ca3af;
+}
+
+.notice {
+    background: #0f1114;
+    border: 1px solid #2a2f36;
+    padding: 14px 16px;
+    border-radius: 6px;
+    font-size: 13.5px;
+    color: #d1d5db;
+    margin-bottom: 24px;
+}
+
+.section-title {
+    font-size: 15px;
+    color: #c7c7c7;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.question {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #e6e6e6;
+}
+
+input[type="text"], textarea {
+    width: 100%;
+    background: #0f1114;
+    border: 1px solid #2a2f36;
+    color: #e6e6e6;
+    padding: 8px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+textarea {
+    min-height: 90px;
+}
+
+.mcq label {
+    display: flex;
+    align-items: center;
+    margin: 6px 0;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.mcq input {
+    margin-right: 8px;
+}
+
+button {
+    width: 100%;
+    margin-top: 26px;
+    padding: 11px;
+    background: #3f4a56;
+    border: none;
+    border-radius: 6px;
+    color: #f3f4f6;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #4b5563;
+}
+
+#error {
+    margin-top: 12px;
+    text-align: center;
+    color: #f87171;
+    font-size: 14px;
+}
+
+/* Success Popup */
+#successPopup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15,17,20,0.95);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-box {
+    width: 480px;
+    background: #15181d;
+    border: 1px solid #2a2f36;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.popup-box h2 {
+    color: #e6e6e6;
+    margin-top: 0;
+}
+
+.popup-box p {
+    font-size: 14px;
+    color: #cbd5e1;
+}
+
+.popup-box a {
+    display: inline-block;
+    margin-top: 16px;
+    color: #9ca3af;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+</style>
+
+<script>
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.addEventListener("keydown", e => {
+    if (
+        e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && ["I","C","J"].includes(e.key)) ||
+        (e.ctrlKey && e.key === "U")
+    ) {
+        e.preventDefault();
+    }
+});
+</script>
+</head>
+
+<body>
+
+<div class="portal">
+    <div class="header">
+        <h1>DullSleep Organisation</h1>
+        <p>Internal Verification & Compliance System</p>
+    </div>
+
+    <div class="notice">
+        This verification process is conducted to validate the legitimacy and authorization
+        status of <b>Severus Snape</b> within DullSleep Organisation.  
+        All responses are monitored and subject to compliance checks.
+    </div>
+
+    <div class="section-title">Verification Questionnaire</div>
+
+    <div class="question">
+        <label>1. Who is Snape's best friend?</label>
+        <input id="q1" type="text">
+    </div>
+
+    <div class="question">
+        <label>2. Who was the collaborator in Project Obscura?</label>
+        <input id="q2" type="text">
+    </div>
+
+    <div class="question">
+        <label>3. What is the defensive strategy used in Case S17?</label>
+        <input id="q3" type="text">
+    </div>
+
+    <div class="question">
+        <label>4. Which activity most directly impacts data privacy if mishandled?</label>
+        <div class="mcq">
+            <label><input type="radio" name="q4" value="a"> A. Sending routine emails via Gmail</label>
+            <label><input type="radio" name="q4" value="b"> B. Posting personal content on Instagram</label>
+            <label><input type="radio" name="q4" value="c"> C. Hard-coding credentials in a public GitHub repository</label>
+            <label><input type="radio" name="q4" value="d"> D. Writing and storing case-related notes</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label>5. How do you protect your data without being compromised?</label>
+        <textarea id="q5"></textarea>
+    </div>
+
+    <button onclick="submitQuiz()">Submit for Verification</button>
+    <div id="error"></div>
+</div>
+
+<!-- Success Popup -->
+<div id="successPopup">
+    <div class="popup-box">
+        <h2>Verification Successful</h2>
+        <p>
+            The authorization status of Severus Snape has been successfully verified.
+            You may now proceed to the designated internal resource.
+        </p>
+        <a id="nextChallengeLink" href="#" target="_blank">
+            Proceed to Authorized Portal →
+        </a>
+    </div>
+</div>
+
+<script>
+async function submitQuiz() {
+    const q4radio = document.querySelector('input[name="q4"]:checked');
+
+    const payload = {
+        q1: q1.value,
+        q2: q2.value,
+        q3: q3.value,
+        q4: q4radio ? q4radio.value : "",
+        q5: q5.value
+    };
+
+    const res = await fetch("/validate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+        nextChallengeLink.href = data.link;
+        successPopup.style.display = "flex";
+        error.textContent = "";
+    } else {
+        error.textContent = "Verification failed. Please review your responses.";
+    }
+}
+</script>
+
+</body>
+</html>
