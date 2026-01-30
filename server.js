@@ -40,7 +40,7 @@ app.post("/validate", (req, res) => {
     if (valid) {
         return res.json({
             success: true,
-            link: "https://example.com/next-challenge"
+            link: "https://revelation-of-shadows.vercel.app/"
         });
     }
 
